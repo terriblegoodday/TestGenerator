@@ -67,10 +67,89 @@ module.exports = {
 			return {
 				task: "<p class=\'expression\'>" + utils.factor(a) + "x" + inequality + b + "</p>. Введите решенное неравенство\
 				без пробелов и\
-					с x в левой части",
+					с x в левой части.",
 				answers: {
-					inequality: "x" + d + b/a,
+					inequality: ["x" + d + b/a, "1"],
 				},
+			};
+		},
+	},
+	
+	QuadInequalitiesGenerator: {
+		title: "Квадратные неравенства",
+		description: "Генерация простейших квадратных неравенств.",
+		Generate: function() {
+			var newX1 = 0;
+			var newX2 = 0;
+			while (newX1 == 0 || newX2 == 0) {
+				newX1 = Math.round((Math.random() * 21) - 10);
+				newX2 = Math.round((Math.random() * 21) - 10);
+			};
+			var p = -(newX1 + newX2);
+			if (p > 0) {
+				p = "+" + String(p);
+			};
+			var q = newX1 * newX2;
+			if (q > 0) {
+				q = "+" + String(q);
+			};
+			var quadEquation = ["x^2", String(p)+"x", String(q)];
+			console.log(quadEquation.join(''))
+			var r = _.random(0,2);
+			var randomRight = quadEquation[r];
+			if (randomRight[0] == '-') {
+				randomRight = randomRight.replace('-', '+');
+			} else if (randomRight == 'x^2') {
+				randomRight = '-x^2';
+			} else {
+				randomRight = randomRight.replace('+', '-');
+			};
+			quadEquation.splice(r, 1);
+			console.log(randomRight);
+			quadEquation = quadEquation.join("");
+			if (quadEquation[0] == '+') { quadEquation = quadEquation.replace('+', ''); };
+			var a = _.shuffle([-1, +1])[0];
+			var c; var d;
+			var inequality = _.shuffle(['&lt;', '&gt;', '&ge;', '&le;'])[0];
+			var reverse = function(x) {
+				switch (x) {
+					case '&lt;': c = '&lt;'; d = '&gt;'; break;
+					case '&gt;': c = '&gt;'; d = '&lt;'; break;
+					case '&ge;': c = '&ge;'; d = '&le;'; break;
+					case '&le;': c = '&le;'; d = '&ge;'; break;
+				};
+			};
+			if (Math.sign(a) == -1) {
+				reverse(inequality);
+			} else {
+				c = inequality;
+			};
+			switch (c) {
+				case '&lt;': d='<'; break;
+				case '&gt;': d='>'; break;
+				case '&ge;': d='>='; break;
+				case '&le;': d='<='; break;
+			};
+			if (Math.sign(newX1) == -1) {
+				newX1 = "+" + String(Math.abs(newX1));
+			} else {
+				newX1 = "-" + String(Math.abs(newX1))
+			}
+			if (Math.sign(newX2) == -1) {
+				newX2 = "+" + String(Math.abs(newX2));
+			} else {
+				newX2 = "-" + String(Math.abs(newX2));
+			}
+			return {
+				answers: {
+					inequality: [
+						"(x" + newX1 + ")(x" + newX2 + ")" + d + "0", 
+						"(x" + newX2 + ")(x" + newX1 + ")" + d + "0"
+					],
+				},
+				task: "<p class=\'expression\'>" + quadEquation + c + randomRight + "</p>. Введите решенное неравенство\
+				без пробелов и\
+					с x в левой части.",				
 			};
 		},
 	},

@@ -334,12 +334,12 @@ module.exports = {
 			return {
 				answers: {
 					replaceable: {
-						x1: this.x1,
-						x2: this.x2,
+						x1: String(this.x1),
+						x2: String(this.x2),
 						// Если вы хотите взаимозаменяемые функции, добавьте в аттрибут answers аттрибут replaceable, и в него
 						// пишите ответы. Однако обязательно добавьте функцию, которая возвращает эти ответы в виде массива.
 						valueOf: function() {
-							return [this.x1, this.x2];
+							return [String(this.x1), String(this.x2)];
 						}
 					},
 				},

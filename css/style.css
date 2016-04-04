@@ -1,0 +1,210 @@
+/*
+	Reset CSS
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+/* Stylesheet Begin */
+
+body{
+	font-family: "PT Sans", "Arial" !important;
+}
+.WindowControls {
+	height: 50px;
+    padding-top: 10px;
+    position: fixed;
+    width: 100%;
+    background: white;
+}
+#CloseWindow{
+	float: right;
+	margin-right: 15px;
+	margin-top: 5px;
+	height: 40px;
+	width: 40px;
+	font-size: 32px;
+	text-align: center;
+	-webkit-appearance: none;
+	background: white;
+	border: none;
+}
+#CloseWindow:focus {
+	outline: 0;
+}
+#CloseWindow:hover .CloseWindowButton {
+	color: #52AB97;
+}
+.OperationZone {
+	margin: 0px 20px 20px 20px;
+	box-sizing: border-box;
+	padding-top: 70px;
+}
+.ControlZone, #QuadEquationForm {
+	box-sizing: border-box;
+}
+#QuadEquationForm {
+	width: 100%;
+}
+.TextField {
+	-webkit-appearance: none;
+	height: 35px;
+	border: 1.5px solid rgba(0,0,0,.25);
+	margin-bottom: 5px;
+	border-radius: 3.5px;
+	width: 100%;
+	box-sizing: border-box;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-family: "PT Sans", "Arial";
+	font-size: 16px;
+}
+.TextField:focus {
+	border-color: #359699;
+	outline: 0;
+}
+.footer {
+	width: 100%;
+	height: 50px;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+#StatusZone {
+	width: 30%;
+	float: left;
+	font-size: 16px;
+	color: #4a4a4a;
+	line-height: 50px;
+}
+#GenerateQuadEquation {
+	width: 34%;
+	float: left;
+}
+#TestQuadEquation {
+	width: 35%;
+	float: left;
+}
+.Button {
+	position: relative;
+	top: 16px;
+	height: 24px;
+	background: #359699;
+	border-radius: 3.5px;
+	border: 0;
+	margin: 0 auto;
+	font-size: 14px;
+	font-family: "PT Sans", "Arial";
+	line-height: 16px;
+	color: white;
+}
+.Button:hover{
+	background: #43A9AC;
+}
+.Button:active{
+	background: #317375;
+	outline: 0;
+}
+.Button:focus{
+	outline: 0;
+}
+.Button:disabled, .Button[disabled=disabled] {
+	color: #c0c0c0;
+    background-color: #ffffff;
+}
+.TextField, .Button, #CloseWindow {
+	-webkit-app-region: no-drag;
+}
+.GeneratorsTable {
+	margin-top: 15px;
+}
+.GeneratorsTable > thead {
+	border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.GeneratorsTable > thead > tr {
+	padding-bottom: 2.5px;
+}
+
+.GeneratorsTable > thead > tr > th, .GeneratorsTable > tbody > tr > td {
+	text-align: left;
+	padding-bottom: 5px;
+	padding-right: 5px;
+}
+.GeneratorsTable > tbody > tr > td {
+	padding-top: 5px;
+}
+.GeneratorsTable > tbody > tr:nth-child(2n+1) {
+	background-color: rgba(0,0,0,.05);
+}
+.GeneratorsTable > tbody > tr > td:nth-of-type(5){
+	display: none;
+}
+
+#numberOfVariants {
+	width: 250px;
+}
+#TestZone {
+	padding-top: 30px;
+}
+#TestZone > p {
+	padding-bottom: 5px;
+	line-height: 24px;
+}
+p > strong {
+	font-weight: 800;
+}
+.AnswerZone {
+	padding-bottom: 5px;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+	margin-bottom: 10px;
+}
+.AnswerZone:last-child {
+	border-bottom: none;
+}
+.expression {
+	font-family: "PT Serif", "Times", "serif";
+	font-size: 18px;
+	display: inline;
+}

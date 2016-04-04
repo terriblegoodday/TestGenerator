@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TestGenerator</title>
+		<meta charset="utf8" />
+		<link rel="stylesheet" href="css/PTSans.css" />
+		<link rel="stylesheet" href="css/Pe-icon-7-stroke.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<meta charset="utf8" />
+	</head>
+	<body>
+		<script src="js/utils.js"></script>
+		<script src="js/appdelegate.js"></script>
+		<script src="js/controller.js"></script>
+		<div class="WindowControls" style="-webkit-app-region: drag;">
+			<button id="CloseWindow"
+				onclick="window.close()"><i class="pe-7s-close CloseWindowButton"></i></button>
+		</div>
+		<div class="OperationZone">
+			<div class="RequestZone">
+				<form id="RequestTestForm">
+					<!-- <input class="TextField" id="numberOfVariants"
+						type="number" min="1" max="40" placeholder="Количество вариантов"
+						disabled />  !IMPLEMENT LATER! -->
+					<table class="GeneratorsTable" id="GeneratorsTable">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Генератор</th>
+								<th>Описание</th>
+								<th>Количество<th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- <tr>
+								<td><input type="checkbox" /></td>
+								<td>Квадратные уравнения</td>
+								<td>Генерация приведенных квадратных уравнений и представление их в виде теста.</td>
+								<td><input type="number" min="1" max="10" /></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" /></td>
+								<td>Арифметические прогрессии</td>
+								<td>Генерация арифметических прогрессий и представление их в виде теста.</td>
+								<td><input type="number" min="1" max="10" /></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" /></td>
+								<td>Геометрические прогрессии</td>
+								<td>Генерация геометрических прогрессий и представление их в виде теста.</td>
+								<td><input type="number" min="1" max="10" /></td>
+							</tr> -->
+						<tbody>
+					</table>
+				</form>
+				<button class="Button" onclick="AppDelegate.ShowTasks()">Составить тест</button>
+				<div id="TestZone">
+			
+				</div>
+				<button class="Button" onclick="AppDelegate.CheckUserAnswers()"
+					id="CheckUserAnswers" style="display: none;">Проверить ответы</button>
+				<!-- <input type="file" nwsaveas /> !IMPLEMENT LATER! -->
+				<p id="Decision" style="display: block; margin-top: 25px;"></p>
+			</div>
+		</div>
+		
+	</body>
+	<script>
+	var generators = [
+		{"title": "QuadEquationGenerator", "variants": 5},
+		{"title": "ArithmeticGenerator", "variants": 5},
+	];
+	var shortcut = MasterController.GenerateTasks(generators);
+	</script>
+	<!--Outlets -->
+	<script>
+		var TestZone = document.getElementById("TestZone");
+		var GeneratorsTable = document.getElementById("GeneratorsTable").getElementsByTagName('tbody')[0];
+		var Decision = document.getElementById("Decision");
+		var CheckUserAnswers = document.getElementById("CheckUserAnswers");
+	</script>
+		
+	<script>
+		AppDelegate.ApplicationDidFinishLaunching();
+	</script>
+		
+</html>
+		

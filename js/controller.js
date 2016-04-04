@@ -23,7 +23,7 @@ var MasterController = {
 			var preparedTests = ""
 			preparedTests += "<form class=\"AnswerZone\" id=\"A" + i + "\">";
 			for (var b in tasks[i]["answers"]) {
-				if (typeof(tasks[i]["answers"][b]) != 'object') {
+				if (b != 'replaceable') {
 					preparedTests += "<input class=\"TextField\" id=\"" + b + "\"/>"
 					// "<p>" + tasks[i]["answers"][b] + "</p>"
 					;
@@ -79,14 +79,20 @@ var MasterController = {
 		var rightAnswer = rightAnswers[userAnswer.ID].answers;
 		for (var i in rightAnswer) {
 			if (userAnswer.answer[i] != rightAnswer[i] && (typeof(userAnswer.answer[i]) == 'string'
-			|| typeof(userAnswer.answer[i]) == 'number')) {
+			|| typeof(userAnswer.answer[i]) == 'number') && (typeof rightAnswer[i] != 'object')) {
 				return false;
 			} else if (i == "replaceable") {
 				for (var b in userAnswer.answer) {
-					if ((rightAnswer[i].valueOf().indexOf(Number(userAnswer.answer[b])) == -1) && (b != 'undefined')) {
+					if ((rightAnswer[i].valueOf().indexOf(String(userAnswer.answer[b])) == -1) && (b != 'undefined')) {
 						return false;
 					};
 				};
+			} else if (typeof rightAnswer[i] == "object") {
+					for (var b in userAnswer.answer) {
+						if ((rightAnswer[i].indexOf(String(userAnswer.answer[b])) == -1) && (b != 'undefined')) {
+							return false;
+						};
+					};
 			};
 		};
 		return true;

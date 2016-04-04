@@ -1,4 +1,5 @@
 var _ = require('underscore'); // http://underscorejs.org
+var utils = require('./utils.js');
 module.exports = {
 	// Генераторы заданий
 	// Должны иметь обязательные аттрибуты title, description
@@ -27,7 +28,52 @@ module.exports = {
 	
 	// [Math.floor(Math.random()*items.length)]
 
-	
+	LinearInequalitiesGenerator: {
+		title: "Линейные неравенства",
+		description: "ax+b<0, где a и b - любые числа, причем a!=0, а x - неизвестная переменная.",
+		lastReturn: {
+			// заполнить позже
+		},
+		Generate: function() {
+			var a = 0;
+			while (a == 0) {
+				a = ((Math.random() * (30 + 1)) -15).toFixed(0);
+			};
+			var b = 0;
+			while (!((b / a).toFixed(0) == b / a) || b == 0 || b / a == 1 || b / a == -1) {
+				b = ((Math.random() * (120 + 1)) -60).toFixed(0);
+			};
+			var c; var d;
+			const inequality = _.shuffle(['&lt;', '&gt;', '&ge;', '&le;'])[0];
+			var reverse = function(x) {
+				switch (x) {
+					case '&lt;': c = '&lt;'; d = '&gt;'; break;
+					case '&gt;': c = '&gt;'; d = '&lt;'; break;
+					case '&ge;': c = '&ge;'; d = '&le;'; break;
+					case '&le;': c = '&le;'; d = '&ge;'; break;
+				};
+			};
+			if (Math.sign(a) == -1) {
+				reverse(inequality);
+			} else {
+				d = inequality;
+			};
+			switch (d) {
+				case '&lt;': d='<'; break;
+				case '&gt;': d='>'; break;
+				case '&ge;': d='>='; break;
+				case '&le;': d='<='; break;
+			};
+			return {
+				task: "<p class=\'expression\'>" + utils.factor(a) + "x" + inequality + b + "</p>. Введите решенное неравенство\
+				без пробелов и\
+					с x в левой части",
+				answers: {
+					inequality: "x" + d + b/a,
+				},
+			};
+		},
+	},
 
 	ProbabilityGenerator: {
 		title: "Вероятности",
@@ -80,7 +126,6 @@ module.exports = {
 				];
 				switch (_.shuffle(cases)[0]) {
 					case 1: 
-						console.log(candidates)
 						return {
 							task: "Имеется " + n + " кандидатов. Какова вероятность, что \
 							выберут одного из них? Введите вероятность, округленную до сотых.",

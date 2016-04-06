@@ -81,7 +81,7 @@ module.exports = {
 		Generate: function() {
 			var newX1 = 0;
 			var newX2 = 0;
-			while (newX1 == 0 || newX2 == 0) {
+			while ((Math.abs(newX1) == Math.abs(newX2)) || newX1 == 0 || newX2 == 0) {
 				newX1 = Math.round((Math.random() * 21) - 10);
 				newX2 = Math.round((Math.random() * 21) - 10);
 			};
@@ -315,8 +315,7 @@ module.exports = {
 		Generate: function() {
 			var newX1 = 0;
 			var newX2 = 0;
-			while (((this.x1 == 0 || this.x2 == 0)) || (newX1 == 0 || newX2 == 0)
-				|| (this.x1 == newX1 && this.x2 == newX2)) {
+			while (Math.abs(newX1) == Math.abs(newX2)) {
 				newX1 = Math.round((Math.random() * 21) - 10);
 				newX2 = Math.round((Math.random() * 21) - 10);
 			};

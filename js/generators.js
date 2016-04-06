@@ -1,5 +1,6 @@
 var _ = require('underscore'); // http://underscorejs.org
 var utils = require('./utils.js');
+
 module.exports = {
 	// Генераторы заданий
 	// Должны иметь обязательные аттрибуты title, description
@@ -94,7 +95,6 @@ module.exports = {
 				q = "+" + String(q);
 			};
 			var quadEquation = ["x^2", String(p)+"x", String(q)];
-			console.log(quadEquation.join(''))
 			var r = _.random(0,2);
 			var randomRight = quadEquation[r];
 			if (randomRight[0] == '-') {
@@ -105,7 +105,6 @@ module.exports = {
 				randomRight = randomRight.replace('+', '-');
 			};
 			quadEquation.splice(r, 1);
-			console.log(randomRight);
 			quadEquation = quadEquation.join("");
 			if (quadEquation[0] == '+') { quadEquation = quadEquation.replace('+', ''); };
 			var a = _.shuffle([-1, +1])[0];
@@ -125,10 +124,22 @@ module.exports = {
 				c = inequality;
 			};
 			switch (c) {
-				case '&lt;': d='<'; break;
-				case '&gt;': d='>'; break;
-				case '&ge;': d='>='; break;
-				case '&le;': d='<='; break;
+				case '&lt;': d='<';
+				var x_array = [Number(newX1), Number(newX2)].sort();
+				var answer = x_array[0] + "<" + "x" + "<" + x_array[1];
+				break;
+				case '&gt;': d='>'; 
+				var x_array = [Number(newX1), Number(newX2)].sort();
+				var answer = "x>" + x_array[0] + ";" + "x<" + x_array[1];
+				break;
+				case '&ge;': d='>=';
+				var x_array = [Number(newX1), Number(newX2)].sort();
+				var answer = "x<=" + x_array[0] + ";" + "x>=" + x_array[1];
+				break;
+				case '&le;': d='<=';
+				var x_array = [Number(newX1), Number(newX2)].sort();
+				var answer = x_array[0] + "<=" + "x" + "<=" + x_array[1];
+				break;
 			};
 			if (Math.sign(newX1) == -1) {
 				newX1 = "+" + String(Math.abs(newX1));
@@ -142,10 +153,7 @@ module.exports = {
 			}
 			return {
 				answers: {
-					inequality: [
-						"(x" + newX1 + ")(x" + newX2 + ")" + d + "0", 
-						"(x" + newX2 + ")(x" + newX1 + ")" + d + "0"
-					],
+					inequality: answer,
 				},
 				task: "<p class=\'expression\'>" + quadEquation + c + randomRight + "</p>. Введите решенное неравенство\
 				без пробелов и\

@@ -130,7 +130,7 @@ module.exports = {
 				break;
 				case '&gt;': d='>'; 
 				var x_array = [Number(newX1), Number(newX2)].sort();
-				var answer = "x>" + x_array[0] + ";" + "x<" + x_array[1];
+				var answer = "x<" + x_array[1] + ";" + "x>" + x_array[0];
 				break;
 				case '&ge;': d='>=';
 				var x_array = [Number(newX1), Number(newX2)].sort();

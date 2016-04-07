@@ -155,9 +155,7 @@ module.exports = {
 				answers: {
 					inequality: answer,
 				},
-				task: "<p class=\'expression\'>" + quadEquation + c + randomRight + "</p>. Введите решенное неравенство\
-				без пробелов и\
-					с x в левой части.",				
+				task: "<p class=\'expression\'>" + quadEquation + c + randomRight + "</p>. Введите решенное неравенство.",				
 			};
 		},
 	},
